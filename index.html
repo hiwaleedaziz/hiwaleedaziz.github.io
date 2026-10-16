@@ -64,7 +64,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 .glass{position:relative;background:linear-gradient(135deg,var(--glass-hi) -40%,transparent 38%),var(--glass);-webkit-backdrop-filter:blur(22px) saturate(190%) contrast(1.05);backdrop-filter:blur(22px) saturate(190%) contrast(1.05);border:1px solid var(--glass-rim);box-shadow:inset 0 1px 0 var(--glass-hi),inset 0 -1px 1px rgba(255,255,255,.08),inset 0 0 24px rgba(255,255,255,.06),0 12px 32px var(--glass-shade)}
 .nav{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);z-index:30;padding-inline:16px;margin-top:12px;pointer-events:none}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 24px;max-width:1120px;border-radius:999px;pointer-events:auto}
-.brand{font:800 18px/1 var(--f);text-decoration:none;letter-spacing:.04em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.brand{white-space:nowrap;font:800 18px/1 var(--f);text-decoration:none;letter-spacing:.04em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
 .brand i{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,var(--lime),#3D8A44)}
 .nav ul{display:flex;gap:clamp(12px,2.6vw,26px);list-style:none;margin:0;padding:0}
 .nav ul a{text-decoration:none;font-weight:600;font-size:14px;color:var(--muted)}
@@ -222,7 +222,7 @@ dialog::backdrop{background:rgba(4,16,9,.8)}
   .line .k{grid-column:1/-1}
   .vinfo{padding:20px}
 }
-@media (max-width:480px){.nav ul li:first-child{display:none}.photo::after{right:-10px}}
+@media (max-width:480px){.nav ul li:first-child{display:none}.nav .wrap{padding:10px 16px}.nav ul{gap:14px}.nav ul a{font-size:13px}.brand{font-size:15px}.photo::after{right:-10px}}
 </style>
 </head>
 <body>
@@ -565,5 +565,6 @@ if (SITE.sheetCsv){
   fetch(SITE.sheetCsv).then(r => r.ok ? r.text() : Promise.reject()).then(t => { const rows = parseCSV(t); if (rows.length) start(rows); }).catch(() => {});
 }
 </script>
+<script src="assistant.js"></script>
 </body>
 </html>
