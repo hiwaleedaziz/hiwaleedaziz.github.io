@@ -193,7 +193,7 @@
   :root[data-theme="dark"] .wa-form button,:root[data-theme="dark"] .wa-btn:not(.wa-green):not(.ghost){background:var(--lime,#C9E08F);color:var(--lime-ink,#0D3B24)}
   @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .wa-form button,:root:not([data-theme="light"]) .wa-btn:not(.wa-green):not(.ghost){background:var(--lime,#C9E08F);color:var(--lime-ink,#0D3B24)}}
   .wa-note{font:500 11px/1.3 var(--f,system-ui);color:var(--muted,#5A6B60);text-align:center;padding:0 16px 10px}
-  @media (max-width:520px){.wa-panel{right:8px;left:8px;width:auto;bottom:calc(84px + env(safe-area-inset-bottom,0px));height:min(72vh,600px)}.wa-launch .wa-tip{display:none}}
+  @media (max-width:520px){.wa-av{width:50px;height:50px}.wa-launch{right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px))}.wa-panel{right:8px;left:8px;width:auto;bottom:calc(84px + env(safe-area-inset-bottom,0px));height:min(72vh,600px)}.wa-launch .wa-tip{display:none}}
   @media (prefers-reduced-motion:reduce){.wa-av::before{animation:none}.wa-panel,.wa-msg{transition:none;animation:none}}`;
   const style = document.createElement("style"); style.textContent = css; document.head.appendChild(style);
 
