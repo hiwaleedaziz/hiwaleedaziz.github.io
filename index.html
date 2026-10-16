@@ -16,7 +16,7 @@
   --lime:#C9E08F; --lime-strong:#8FBF45; --lime-ink:#0D3B24;
   --f:"Montserrat",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
   --r:22px;
-  --cta-fill:#0D3B24;
+  --cta-fill:#0D3B24; --neon:#169A4C;
   --glass:rgba(255,255,255,.42); --glass-rim:rgba(255,255,255,.75); --glass-shade:rgba(13,59,36,.14); --glass-hi:rgba(255,255,255,.9);
   --blob-a:rgba(201,224,143,.55); --blob-b:rgba(70,170,120,.28); --blob-c:rgba(143,191,69,.30);
 }
@@ -24,13 +24,13 @@
   --paper:#06130C; --card:#0E2118; --ink:#E8F0E3; --muted:#9BAFA1; --line:#1D3527;
   --forest:#0E2E1E; --forest-2:#174A2E; --on-forest:#EEF5E8; --on-forest-muted:#A9C0B0;
   --lime:#C9E08F; --lime-strong:#B4D96A; --lime-ink:#0D3B24; color-scheme:dark;
-  --cta-fill:#C9E08F; --glass:rgba(255,255,255,.06); --glass-rim:rgba(255,255,255,.18); --glass-shade:rgba(0,0,0,.45); --glass-hi:rgba(255,255,255,.35);
+  --neon:#2DCB6F; --cta-fill:#C9E08F; --glass:rgba(255,255,255,.06); --glass-rim:rgba(255,255,255,.18); --glass-shade:rgba(0,0,0,.45); --glass-hi:rgba(255,255,255,.35);
   --blob-a:rgba(180,217,106,.22); --blob-b:rgba(40,140,95,.30); --blob-c:rgba(23,90,60,.55)}}
 :root[data-theme="dark"]{
   --paper:#06130C; --card:#0E2118; --ink:#E8F0E3; --muted:#9BAFA1; --line:#1D3527;
   --forest:#0E2E1E; --forest-2:#174A2E; --on-forest:#EEF5E8; --on-forest-muted:#A9C0B0;
   --lime:#C9E08F; --lime-strong:#B4D96A; --lime-ink:#0D3B24; color-scheme:dark;
-  --cta-fill:#C9E08F; --glass:rgba(255,255,255,.06); --glass-rim:rgba(255,255,255,.18); --glass-shade:rgba(0,0,0,.45); --glass-hi:rgba(255,255,255,.35);
+  --neon:#2DCB6F; --cta-fill:#C9E08F; --glass:rgba(255,255,255,.06); --glass-rim:rgba(255,255,255,.18); --glass-shade:rgba(0,0,0,.45); --glass-hi:rgba(255,255,255,.35);
   --blob-a:rgba(180,217,106,.22); --blob-b:rgba(40,140,95,.30); --blob-c:rgba(23,90,60,.55)}
 
 *{box-sizing:border-box}
@@ -63,10 +63,10 @@ b,strong{font-weight:700}
 body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(38% 32% at 88% 6%,var(--blob-a),transparent 70%),radial-gradient(34% 30% at 6% 42%,var(--blob-b),transparent 70%),radial-gradient(40% 34% at 70% 96%,var(--blob-c),transparent 70%)}
 .glass{position:relative;background:linear-gradient(135deg,var(--glass-hi) -40%,transparent 38%),var(--glass);-webkit-backdrop-filter:blur(22px) saturate(190%) contrast(1.05);backdrop-filter:blur(22px) saturate(190%) contrast(1.05);border:1px solid var(--glass-rim);box-shadow:inset 0 1px 0 var(--glass-hi),inset 0 -1px 1px rgba(255,255,255,.08),inset 0 0 24px rgba(255,255,255,.06),0 12px 32px var(--glass-shade)}
 .nav{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);z-index:30;padding-inline:16px;margin-top:12px;pointer-events:none}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 24px;max-width:1120px;border-radius:999px;pointer-events:auto}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:7px 7px 7px 24px;max-width:1120px;border-radius:999px;pointer-events:auto}
 .brand{white-space:nowrap;font:800 18px/1 var(--f);text-decoration:none;letter-spacing:.04em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
 .brand i{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,var(--lime),#3D8A44)}
-.nav ul{display:flex;gap:clamp(12px,2.6vw,26px);list-style:none;margin:0;padding:0}
+.nav ul{display:flex;align-items:center;gap:clamp(12px,2.6vw,26px);list-style:none;margin:0;padding:0}
 .nav ul a{text-decoration:none;font-weight:600;font-size:14px;color:var(--muted)}
 .nav ul a:hover{color:var(--ink)}
 
@@ -98,7 +98,8 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 .btn:hover{transform:translateY(-1px)}
 /* See my work: rainbow glow + page dims */
 @property --spin{syntax:"<angle>";inherits:false;initial-value:0deg}
-.cta-wrap{position:relative;z-index:46;display:inline-flex}
+.cta-wrap{position:relative;z-index:1;display:inline-flex}
+body.focus .cta-wrap{z-index:46}
 .btn-hero{position:relative;transition:transform .45s cubic-bezier(.2,.8,.2,1),background .3s;border-width:2px}
 .btn-hero::before,.btn-hero::after{content:"";position:absolute;border-radius:999px;z-index:-1;opacity:0;pointer-events:none;background:conic-gradient(from var(--spin),#ff2e63,#ff9f1c,#ffe14d,#5dff6a,#22e4ff,#4d6bff,#b44dff,#ff2e63);transition:opacity .45s ease;animation:spin 2.4s linear infinite}
 .btn-hero::before{inset:-6px;filter:blur(10px)}
@@ -210,6 +211,37 @@ dialog::backdrop{background:rgba(4,16,9,.8)}
 
 @keyframes rise{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
 @keyframes pop{from{transform:translateY(10px) scale(.98)}to{transform:none}}
+/* light sweep on hover: a soft white streak travels across cards and pills */
+.sweep{position:absolute;inset:-1.5px;z-index:3;pointer-events:none;border-radius:inherit;overflow:hidden}
+.sweep i{position:absolute;top:-10%;bottom:-10%;left:-30%;width:160%;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.15) 50%,transparent 70%);transform:translateX(-100%);transition:transform 1000ms ease}
+.nav .wrap > .sweep i{left:0;width:100%;background:linear-gradient(to right,transparent,rgba(255,255,255,.15),transparent)}
+.sweep-host:hover > .sweep i,.card:hover .frame > .sweep i,.sweep-host:focus-visible > .sweep i{transform:translateX(100%)}
+@media (prefers-reduced-motion:reduce){.sweep{display:none}}
+
+/* experience: closed by default, points slide down on hover with sparkles */
+.job{position:relative;cursor:pointer;outline:none}
+.job .jhead{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.job .jtog{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;border:1px solid color-mix(in oklab,var(--lime) 45%,transparent);color:var(--lime);font:600 18px/1 var(--f);transition:transform .45s cubic-bezier(.2,.8,.2,1),background .3s}
+.job .jbody{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s cubic-bezier(.2,.8,.2,1)}
+.job .jbody > ul{overflow:hidden;min-height:0}
+.job .jbody li{opacity:0;transform:translateY(-6px);transition:opacity .35s ease,transform .35s ease}
+.job .pos{margin-bottom:0}
+.job:hover .jbody,.job.open .jbody,.job:focus-visible .jbody{grid-template-rows:1fr}
+.job:hover .jbody > ul,.job.open .jbody > ul,.job:focus-visible .jbody > ul{padding-top:14px}
+.job:hover .jbody li,.job.open .jbody li,.job:focus-visible .jbody li{opacity:1;transform:none}
+.job:hover .jbody li:nth-child(2),.job.open .jbody li:nth-child(2){transition-delay:.08s}
+.job:hover .jbody li:nth-child(3),.job.open .jbody li:nth-child(3){transition-delay:.16s}
+.job:hover .jtog,.job.open .jtog,.job:focus-visible .jtog{transform:rotate(45deg);background:color-mix(in oklab,var(--lime) 18%,transparent)}
+.job .jbody > ul{transition:padding-top .55s cubic-bezier(.2,.8,.2,1)}
+.spark{position:absolute;z-index:2;pointer-events:none;color:var(--lime);font-size:var(--s,12px);line-height:1;text-shadow:0 0 8px var(--lime);animation:spark .9s ease-out forwards}
+@keyframes spark{0%{opacity:0;transform:translate(0,0) scale(.3) rotate(0)}30%{opacity:1}100%{opacity:0;transform:translate(var(--dx,0),var(--dy,-24px)) scale(1) rotate(90deg)}}
+
+/* header Contact link: tube-light flicker with a soft green glow */
+.nav a.neon{display:inline-flex;align-items:center;padding:9px 18px;border-radius:999px;color:var(--neon);border:1px solid rgba(45,203,111,.5);box-shadow:0 0 10px rgba(45,203,111,.3),inset 0 0 8px rgba(45,203,111,.15);transition:box-shadow .3s}
+.nav a.neon:hover{color:var(--neon);box-shadow:0 0 16px rgba(45,203,111,.55),inset 0 0 10px rgba(45,203,111,.28)}
+.nav a.neon .flick{text-shadow:0 0 6px rgba(45,203,111,.7),0 0 14px rgba(45,203,111,.35);animation:tube 6s infinite}
+@keyframes tube{0%,6%,8.5%,11%,100%{opacity:1;text-shadow:0 0 6px rgba(45,203,111,.7),0 0 14px rgba(45,203,111,.35)}7%,10%{opacity:.3;text-shadow:none}9.5%{opacity:.8;text-shadow:0 0 4px rgba(45,203,111,.5)}}
+@media (prefers-reduced-motion:reduce){.nav a.neon .flick{animation:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
 @media (max-width:880px){
@@ -222,14 +254,14 @@ dialog::backdrop{background:rgba(4,16,9,.8)}
   .line .k{grid-column:1/-1}
   .vinfo{padding:20px}
 }
-@media (max-width:480px){.nav ul li:first-child{display:none}.nav .wrap{padding:10px 16px}.nav ul{gap:14px}.nav ul a{font-size:13px}.brand{font-size:15px}.photo::after{right:-10px}}
+@media (max-width:480px){.nav ul li:first-child{display:none}.nav .wrap{padding:6px 6px 6px 16px}.nav a.neon{padding:8px 14px}.nav ul li:nth-child(3){display:none}.nav ul{gap:14px}.nav ul a{font-size:13px}.brand{font-size:15px}.photo::after{right:-10px}}
 </style>
 </head>
 <body>
 
 <nav class="nav"><div class="wrap glass">
   <a class="brand" href="#top"><i></i><span id="brand"></span></a>
-  <ul><li><a href="#work">Work</a></li><li><a href="#experience">Experience</a></li><li><a href="#skills">Skills</a></li><li><a href="#contact">Contact</a></li></ul>
+  <ul><li><a href="#work">Work</a></li><li><a href="#experience">Experience</a></li><li><a href="#skills">Skills</a></li><li><a class="neon" href="#contact"><span class="flick">Contact</span></a></li></ul>
 </div></nav>
 
 <main id="top">
@@ -432,11 +464,12 @@ function fill(){
   const endY = y => isNow(y) ? 9999 : Math.max(0, ...yrs(y));
   const startY = y => yrs(y)[0] || 0;
   const jobs = [...SITE.experience].sort((a,b) => (endY(b.years) - endY(a.years)) || (startY(b.years) - startY(a.years)));
-  $("#jobs").innerHTML = jobs.map(j => `<article class="job">
+  $("#jobs").innerHTML = jobs.map(j => `<article class="job" tabindex="0" aria-label="${esc(j.company)}, ${esc(j.title)}. Hover or press Enter for details.">
     <div class="when"><span>${esc(j.years || "Present")}</span>${isNow(j.years) ? `<span class="now">Current</span>` : ""}</div>
-    <div><h3>${esc(j.company)}${j.note ? ` <small>(${esc(j.note)})</small>` : ""}</h3>
-    <p class="pos">${esc(j.title)}</p>
-    <ul class="bullets">${j.points.map(p => `<li>${esc(p)}</li>`).join("")}</ul></div></article>`).join("");
+    <div><div class="jhead"><div><h3>${esc(j.company)}${j.note ? ` <small>(${esc(j.note)})</small>` : ""}</h3>
+    <p class="pos">${esc(j.title)}</p></div><span class="jtog" aria-hidden="true">+</span></div>
+    <div class="jbody"><ul class="bullets">${j.points.map(p => `<li>${esc(p)}</li>`).join("")}</ul></div></div></article>`).join("");
+  wireJobs();
   $("#skillList").innerHTML = SITE.skills.map(s => `<li>${esc(s)}</li>`).join("");
   $("#softList").innerHTML = SITE.software.map(s => `<li>${esc(s)}</li>`).join("");
 
@@ -553,6 +586,42 @@ $("#viewer").addEventListener("cancel", e => { e.preventDefault(); closeViewer()
 $("#viewer").addEventListener("click", e => { if (e.target.id === "viewer") closeViewer(); });
 document.addEventListener("keydown", e => { if (!$("#viewer").open) return; if (e.key==="ArrowRight") open(cur+1); if (e.key==="ArrowLeft") open(cur-1); });
 
+/* experience: open on hover (tap on phones), sprinkle a few sparkles as the points appear */
+function sparkle(job){
+  if (matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+  const box = job.getBoundingClientRect();
+  for (let i = 0; i < 9; i++){
+    const s = document.createElement("span"); s.className = "spark"; s.textContent = Math.random() > .4 ? "✦" : "✧";
+    s.style.left = `${30 + Math.random() * (box.width - 60)}px`;
+    s.style.top = `${20 + Math.random() * Math.max(40, box.height - 30)}px`;
+    s.style.setProperty("--s", `${8 + Math.random() * 10}px`);
+    s.style.setProperty("--dx", `${(Math.random() - .5) * 40}px`);
+    s.style.setProperty("--dy", `${-14 - Math.random() * 26}px`);
+    s.style.animationDelay = `${Math.random() * .35}s`;
+    job.appendChild(s); setTimeout(() => s.remove(), 1400);
+  }
+}
+function wireJobs(){
+  document.querySelectorAll(".job").forEach(job => {
+    job.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") sparkle(job); });
+    job.addEventListener("click", e => { if (e.pointerType === "mouse" && matchMedia("(hover:hover)").matches) return; job.classList.toggle("open"); if (job.classList.contains("open")) sparkle(job); });
+    job.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " "){ e.preventDefault(); job.classList.toggle("open"); if (job.classList.contains("open")) sparkle(job); } });
+  });
+}
+
+/* light sweep: add the streak layer to every card, pill and filter, including ones rendered later */
+const SWEEP = ".frame,.fact,.more,.chip,.pill,.btn:not(.btn-hero),.tag,.skillset li,.ratio,.bebadge,.nav .wrap,.cchip,.wa-chip,.wa-btn,.wa-msg.bot";
+function addSweep(el){
+  if (el.querySelector(":scope > .sweep") || (el.closest("#experience,#contact") && !el.closest(".skillset"))) return;
+  if (getComputedStyle(el).position === "static") el.style.position = "relative";
+  el.classList.add("sweep-host");
+  const s = document.createElement("span"); s.className = "sweep"; s.setAttribute("aria-hidden", "true"); s.innerHTML = "<i></i>";
+  el.appendChild(s);
+}
+function sweepAll(root){ (root.matches?.(SWEEP) ? [root] : []).concat([...root.querySelectorAll?.(SWEEP) || []]).forEach(addSweep); }
+new MutationObserver(ms => ms.forEach(m => m.addedNodes.forEach(n => { if (n.nodeType === 1 && !n.classList.contains("sweep")) sweepAll(n); })))
+  .observe(document.body, { childList:true, subtree:true });
+
 fill();
 if (SITE.showreel){
   const rb = $("#reelBtn"); rb.hidden = false;
@@ -560,6 +629,7 @@ if (SITE.showreel){
 }
 wireTilt();
 wireCta();
+sweepAll(document.body);
 start(SITE.work);
 if (SITE.sheetCsv){
   fetch(SITE.sheetCsv).then(r => r.ok ? r.text() : Promise.reject()).then(t => { const rows = parseCSV(t); if (rows.length) start(rows); }).catch(() => {});
