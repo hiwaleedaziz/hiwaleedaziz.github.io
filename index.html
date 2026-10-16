@@ -255,6 +255,109 @@ dialog::backdrop{background:rgba(4,16,9,.8)}
   .vinfo{padding:20px}
 }
 @media (max-width:480px){.nav ul li:first-child{display:none}.nav .wrap{padding:6px 6px 6px 16px}.nav a.neon{padding:8px 14px}.nav ul li:nth-child(3){display:none}.nav ul{gap:14px}.nav ul a{font-size:13px}.brand{font-size:15px}.photo::after{right:-10px}}
+
+/* ---------- phone layout ---------- */
+.more-btn{display:none}
+@media (max-width:600px){
+  .hero{padding-block:24px 4px}
+  .hero-grid{grid-template-columns:104px minmax(0,1fr);column-gap:18px;row-gap:0;align-items:center}
+  .hero-grid > div:last-child{display:contents}
+  .photo-wrap{grid-row:1 / span 2;max-width:104px;padding:8px 8px 0 8px}
+  .photo::before{top:-8px;left:-8px;width:34px;height:34px;border-radius:9px}
+  .photo::after{right:-10px;bottom:12px;width:32px;height:30px;border-radius:9px}
+  .photo .pic{border-radius:20px;font-size:36px}
+  .hero h1{grid-column:2;align-self:end;font-size:28px;line-height:1.05}
+  .role{grid-column:2;align-self:start;margin:6px 0 0;font-size:14px;line-height:1.35}
+  .role span{padding-inline:4px}
+  .hero .pill.dark{grid-column:1 / -1;justify-self:start;margin-top:24px;font-size:13px;padding:10px 16px}
+  .profile{grid-column:1 / -1;font-size:15px;line-height:1.6;margin-top:12px}
+  .profile:not(.open){display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+  .more-btn{grid-column:1 / -1;justify-self:start;display:inline-block;margin-top:6px;padding:4px 0;border:0;background:none;color:var(--lime-strong);font:700 14px/1.2 var(--f);cursor:pointer}
+  .ctas{grid-column:1 / -1;margin-top:18px}
+  .ctas .btn{padding:13px 20px}
+  .facts{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:22px}
+  .fact{padding:14px 10px 12px;border-radius:16px;text-align:center}
+  .fact b{font-size:26px}
+  .fact span{font-size:11px;line-height:1.3;margin-top:5px}
+  section{padding-block:40px}
+  .sec-head{margin-bottom:18px;gap:14px}
+  .sec-head h2{font-size:28px}
+  .filters{flex-wrap:nowrap;overflow-x:auto;width:calc(100% + 32px);margin-inline:-16px;padding:6px 16px 14px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .filters::-webkit-scrollbar{display:none}
+  .chip{flex:none;padding:10px 14px;font-size:13px}
+  .wall{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 12px}
+  .frame{border-radius:14px}
+  .meta{padding:8px 2px 0;gap:6px}
+  .meta h3{font-size:13px;line-height:1.3}
+  .meta p{font-size:11.5px;margin-top:2px}
+  .ratio{font-size:9px;padding:4px 5px}
+  .bebadge{top:7px;left:7px;font-size:10px;padding:5px 6px;border-radius:6px}
+  .play{width:32px;height:32px;right:8px;bottom:8px}
+  .play svg{width:12px;height:12px}
+  .board{padding:12px}
+  .board strong{font-size:15px}
+  .more{padding:16px;gap:8px}
+  .more b{font-size:14px}
+  .more span{font-size:12px}
+  .xp{padding:24px 18px}
+  .xp .pill{margin-bottom:22px}
+  .job{padding-block:18px}
+  .job h3{font-size:18px}
+  .job .pos{font-size:14px}
+  .job .jtog{width:26px;height:26px;font-size:16px}
+  .skillset{padding:22px 18px}
+  .skillset ul{gap:8px;font-size:14px}
+  .skillset li{padding:9px 13px}
+  .contact{padding:26px 18px}
+  .contact h2{font-size:30px;margin:14px 0 20px}
+  .line{padding-block:14px;gap:6px 12px}
+  .line a,.line output{font-size:16px}
+  footer{margin-top:40px}
+  footer .wrap{flex-direction:column;align-items:center;text-align:center;gap:8px;font-size:13px}
+}
+
+/* phone menu */
+.burger,.mnav{display:none}
+@media (max-width:600px){
+  .nav ul li{display:none}
+  .nav ul li:last-child{display:block}
+  .nav .wrap{gap:10px}
+  .nav ul{margin-left:auto}
+  .burger{display:grid;place-content:center;gap:5px;flex:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--glass-rim);background:var(--glass);color:var(--ink);cursor:pointer;padding:0}
+  .burger span{display:block;width:18px;height:2px;border-radius:2px;background:currentColor;transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .2s}
+  .nav.menu-open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav.menu-open .burger span:nth-child(2){opacity:0}
+  .nav.menu-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .mnav{display:flex;flex-direction:column;gap:4px;position:absolute;left:16px;right:16px;top:calc(100% + 10px);padding:10px;border-radius:26px;pointer-events:none;opacity:0;visibility:hidden;transform:translateY(-10px) scale(.98);transform-origin:top right;transition:opacity .3s ease,transform .35s cubic-bezier(.2,.8,.2,1),visibility .3s}
+  .nav.menu-open .mnav{pointer-events:auto;opacity:1;visibility:visible;transform:none}
+  .mnav a{display:flex;align-items:center;justify-content:space-between;padding:15px 16px;border-radius:16px;font:700 18px/1 var(--f);color:var(--ink);text-decoration:none;opacity:0;transform:translateY(-6px);transition:opacity .3s ease,transform .3s ease,background .2s}
+  .mnav a small{font:600 11px/1 var(--f);letter-spacing:.1em;color:var(--muted)}
+  .mnav a:active,.mnav a:hover{background:color-mix(in oklab,var(--lime) 18%,transparent)}
+  .nav.menu-open .mnav a{opacity:1;transform:none}
+  .nav.menu-open .mnav a:nth-child(2){transition-delay:.04s}
+  .nav.menu-open .mnav a:nth-child(3){transition-delay:.08s}
+  .nav.menu-open .mnav a:nth-child(4){transition-delay:.12s}
+  .mnav a.mcontact{color:var(--neon)}
+  .mnav a.mcontact span{text-shadow:0 0 8px rgba(45,203,111,.6)}
+  .menu-scrim{position:fixed;inset:0;z-index:29;background:rgba(2,8,5,.35);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .3s}
+  body.menu-on .menu-scrim{opacity:1;pointer-events:auto}
+}
+#work,#experience,#skills,#contact{scroll-margin-top:88px}
+
+/* phone hero: photo centred, everything below it centred */
+@media (max-width:600px){
+  .hero-grid{grid-template-columns:minmax(0,1fr);justify-items:center;text-align:center}
+  .photo-wrap{grid-row:auto;max-width:150px;width:150px;padding:10px 10px 0 10px;margin-top:6px}
+  .photo::before{width:42px;height:42px;top:-10px;left:-10px}
+  .photo::after{width:40px;height:38px;right:-12px;bottom:16px}
+  .photo .pic{border-radius:24px}
+  .hero h1{grid-column:1;align-self:auto;margin-top:22px;font-size:30px}
+  .role{grid-column:1;margin-top:6px}
+  .hero .pill.dark{grid-column:1;justify-self:center;margin-top:20px}
+  .profile{grid-column:1;text-align:center}
+  .more-btn{grid-column:1;justify-self:center}
+  .ctas{grid-column:1;justify-content:center}
+}
 </style>
 </head>
 <body>
@@ -262,7 +365,15 @@ dialog::backdrop{background:rgba(4,16,9,.8)}
 <nav class="nav"><div class="wrap glass">
   <a class="brand" href="#top"><i></i><span id="brand"></span></a>
   <ul><li><a href="#work">Work</a></li><li><a href="#experience">Experience</a></li><li><a href="#skills">Skills</a></li><li><a class="neon" href="#contact"><span class="flick">Contact</span></a></li></ul>
+  <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+</div>
+<div class="mnav glass" id="mnav">
+  <a href="#work"><span>Work</span><small>01</small></a>
+  <a href="#experience"><span>Experience</span><small>02</small></a>
+  <a href="#skills"><span>Skills</span><small>03</small></a>
+  <a class="mcontact" href="#contact"><span>Contact</span><small>04</small></a>
 </div></nav>
+<div class="menu-scrim" aria-hidden="true"></div>
 
 <main id="top">
   <header class="hero wrap">
@@ -273,6 +384,7 @@ dialog::backdrop{background:rgba(4,16,9,.8)}
         <p class="role" id="role"></p>
         <span class="pill dark">Profile</span>
         <p class="profile" id="profile"></p>
+        <button class="more-btn" id="profMore" type="button" aria-expanded="false">Read more</button>
         <div class="ctas">
           <span class="cta-wrap"><a class="btn primary btn-hero" id="heroCta" href="#work">See my work</a></span>
           <button class="btn" id="reelBtn" hidden><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5v13l11-6.5z" fill="currentColor"/></svg>Watch showreel</button>
@@ -610,7 +722,7 @@ function wireJobs(){
 }
 
 /* light sweep: add the streak layer to every card, pill and filter, including ones rendered later */
-const SWEEP = ".frame,.fact,.more,.chip,.pill,.btn:not(.btn-hero),.tag,.skillset li,.ratio,.bebadge,.nav .wrap,.cchip,.wa-chip,.wa-btn,.wa-msg.bot";
+const SWEEP = ".frame,.fact,.more,.chip,.pill,.btn:not(.btn-hero),.tag,.skillset li,.ratio,.bebadge,.nav .wrap,.mnav a,.cchip,.wa-chip,.wa-btn,.wa-msg.bot";
 function addSweep(el){
   if (el.querySelector(":scope > .sweep") || (el.closest("#experience,#contact") && !el.closest(".skillset"))) return;
   if (getComputedStyle(el).position === "static") el.style.position = "relative";
@@ -629,6 +741,17 @@ if (SITE.showreel){
 }
 wireTilt();
 wireCta();
+/* phone menu: open/close the glass menu from the hamburger */
+(() => {
+  const nav = document.querySelector(".nav"), btn = nav.querySelector(".burger");
+  const set = open => { nav.classList.toggle("menu-open", open); document.body.classList.toggle("menu-on", open); btn.setAttribute("aria-expanded", open); btn.setAttribute("aria-label", open ? "Close menu" : "Open menu"); };
+  btn.addEventListener("click", () => set(!nav.classList.contains("menu-open")));
+  nav.querySelectorAll(".mnav a").forEach(a => a.addEventListener("click", () => set(false)));
+  document.querySelector(".menu-scrim").addEventListener("click", () => set(false));
+  addEventListener("keydown", e => { if (e.key === "Escape") set(false); });
+  addEventListener("resize", () => { if (innerWidth > 600) set(false); });
+})();
+$("#profMore").onclick = e => { const p = $("#profile"), open = p.classList.toggle("open"); e.target.textContent = open ? "Show less" : "Read more"; e.target.setAttribute("aria-expanded", open); };
 sweepAll(document.body);
 start(SITE.work);
 if (SITE.sheetCsv){
