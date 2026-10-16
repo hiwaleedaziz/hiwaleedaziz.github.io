@@ -140,7 +140,7 @@
   @keyframes waPulse{from{transform:scale(1);opacity:.7}to{transform:scale(1.35);opacity:0}}
   .wa-panel{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(92px + env(safe-area-inset-bottom,0px));z-index:61;width:min(390px,calc(100vw - 32px));height:min(600px,calc(100vh - 130px));display:flex;flex-direction:column;padding:0;margin:0;border-radius:28px;overflow:hidden;color:var(--ink,#14201A);transform-origin:bottom right;transform:translateY(16px) scale(.96);opacity:0;pointer-events:none;transition:opacity .3s ease,transform .35s cubic-bezier(.2,.8,.2,1)}
   .wa-panel.open{opacity:1;transform:none;pointer-events:auto}
-  .wa-panel.glass{position:fixed;background:linear-gradient(135deg,var(--glass-hi,rgba(255,255,255,.9)) -40%,transparent 38%),color-mix(in oklab,var(--paper,#F5F8F2) 84%,transparent)}
+  .wa-panel.glass{position:fixed;background:linear-gradient(135deg,var(--glass-hi,rgba(255,255,255,.9)) -40%,transparent 38%),color-mix(in oklab,var(--paper,#F5F8F2) 95%,transparent)}
   .wa-launch .wa-tip.glass{position:relative}
   .wa-head{display:flex;align-items:center;gap:12px;padding:14px 14px 14px 16px;border-bottom:1px solid var(--glass-rim,rgba(255,255,255,.5))}
   .wa-head img,.wa-head span.i{width:40px;height:40px;border-radius:50%;object-fit:cover;display:grid;place-items:center;background:var(--forest,#0D3B24);color:#fff;font-weight:800;flex:none}
