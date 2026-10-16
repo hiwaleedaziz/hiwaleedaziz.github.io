@@ -226,12 +226,20 @@ dialog::backdrop{background:rgba(4,16,9,.8)}
 .job .jbody > ul{overflow:hidden;min-height:0}
 .job .jbody li{opacity:0;transform:translateY(-6px);transition:opacity .35s ease,transform .35s ease}
 .job .pos{margin-bottom:0}
-.job:hover .jbody,.job.open .jbody,.job:focus-visible .jbody{grid-template-rows:1fr}
-.job:hover .jbody > ul,.job.open .jbody > ul,.job:focus-visible .jbody > ul{padding-top:14px}
-.job:hover .jbody li,.job.open .jbody li,.job:focus-visible .jbody li{opacity:1;transform:none}
-.job:hover .jbody li:nth-child(2),.job.open .jbody li:nth-child(2){transition-delay:.08s}
-.job:hover .jbody li:nth-child(3),.job.open .jbody li:nth-child(3){transition-delay:.16s}
-.job:hover .jtog,.job.open .jtog,.job:focus-visible .jtog{transform:rotate(45deg);background:color-mix(in oklab,var(--lime) 18%,transparent)}
+.job.open .jbody,.job:focus-visible .jbody{grid-template-rows:1fr}
+.job.open .jbody > ul,.job:focus-visible .jbody > ul{padding-top:14px}
+.job.open .jbody li,.job:focus-visible .jbody li{opacity:1;transform:none}
+.job.open .jbody li:nth-child(2){transition-delay:.08s}
+.job.open .jbody li:nth-child(3){transition-delay:.16s}
+.job.open .jtog,.job:focus-visible .jtog{transform:rotate(45deg);background:color-mix(in oklab,var(--lime) 18%,transparent)}
+@media (hover:hover) and (pointer:fine){
+  .job:hover .jbody{grid-template-rows:1fr}
+  .job:hover .jbody > ul{padding-top:14px}
+  .job:hover .jbody li{opacity:1;transform:none}
+  .job:hover .jbody li:nth-child(2){transition-delay:.08s}
+  .job:hover .jbody li:nth-child(3){transition-delay:.16s}
+  .job:hover .jtog{transform:rotate(45deg);background:color-mix(in oklab,var(--lime) 18%,transparent)}
+}
 .job .jbody > ul{transition:padding-top .55s cubic-bezier(.2,.8,.2,1)}
 .spark{position:absolute;z-index:2;pointer-events:none;color:var(--lime);font-size:var(--s,12px);line-height:1;text-shadow:0 0 8px var(--lime);animation:spark .9s ease-out forwards}
 @keyframes spark{0%{opacity:0;transform:translate(0,0) scale(.3) rotate(0)}30%{opacity:1}100%{opacity:0;transform:translate(var(--dx,0),var(--dy,-24px)) scale(1) rotate(90deg)}}
