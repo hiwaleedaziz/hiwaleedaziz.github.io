@@ -120,17 +120,22 @@ section{padding-block:clamp(44px,6vw,80px)}
 .filters{display:flex;flex-wrap:wrap;gap:8px}
 .chip{font:600 14px/1 var(--f);padding:11px 16px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;display:inline-flex;gap:8px;align-items:center}
 .chip sup{font-size:11px;color:var(--muted);top:0}
-.chip[aria-pressed="true"]{background:var(--forest);color:var(--on-forest);border-color:var(--forest)}
+.chip{transition:box-shadow .25s ease,background .25s ease,color .25s ease}
+.chip[aria-pressed="true"]{background:var(--forest);color:var(--on-forest);border-color:var(--forest);box-shadow:0 0 0 3px color-mix(in oklab,var(--lime) 55%,transparent),0 0 22px 2px color-mix(in oklab,var(--lime-strong) 70%,transparent)}
+.chip.bechip{--be:#1769FF;color:var(--be);border-color:color-mix(in oklab,var(--be) 55%,var(--line))}
+.chip.bechip sup{color:color-mix(in oklab,var(--be) 70%,var(--muted))}
+.chip.bechip[aria-pressed="true"]{background:var(--be);border-color:var(--be);color:#fff;box-shadow:0 0 0 3px color-mix(in oklab,var(--be) 35%,transparent),0 0 24px 2px color-mix(in oklab,var(--be) 75%,transparent)}
+.chip.bechip[aria-pressed="true"] sup{color:#fff}
 .chip[aria-pressed="true"] sup{color:var(--lime)}
 .chip .be{font:900 13px/1 Arial,sans-serif;letter-spacing:-.04em}
-.more{display:flex;flex-direction:column;justify-content:center;gap:14px;padding:28px;border-radius:var(--r);background:var(--card);border:1.5px dashed color-mix(in oklab,var(--lime-strong) 60%,var(--line));text-decoration:none;break-inside:avoid;margin-bottom:28px}
+.more{display:flex;flex-direction:column;justify-content:center;gap:14px;padding:28px;border-radius:var(--r);background:var(--card);border:1.5px dashed color-mix(in oklab,var(--lime-strong) 60%,var(--line));text-decoration:none;aspect-ratio:4/5;max-width:100%}
 .more b{font:800 22px/1.15 var(--f);text-transform:uppercase}
 .more span{color:var(--muted);font-size:15px}
-.wall{columns:3 300px;column-gap:22px}
-.card{all:unset;box-sizing:border-box;display:block;width:100%;break-inside:avoid;margin-bottom:28px;cursor:pointer}
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:30px 22px;align-items:start}
+.card{all:unset;box-sizing:border-box;display:block;width:100%;min-width:0;cursor:pointer}
 .card:focus-visible{outline:2px solid var(--lime-strong);outline-offset:4px;border-radius:var(--r)}
 .card.in{animation:pop .35s ease both}
-.frame{position:relative;width:100%;max-width:100%;border-radius:var(--r);overflow:hidden;background:var(--forest);border:1px solid var(--line)}
+.frame{position:relative;width:100%;max-width:100%;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;background:var(--forest);border:1px solid var(--line)}
 .frame img{position:relative;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
 .card:hover .frame img{transform:scale(1.03)}
 .play{position:absolute;right:14px;bottom:14px;width:46px;height:46px;border-radius:50%;background:var(--lime);color:var(--lime-ink);display:grid;place-items:center;z-index:2}
@@ -396,7 +401,7 @@ function media(item){
 }
 function cover(item, m){ const c = (item.cover||"").trim(); return c ? img(c,1200) : (m && m.thumb); }
 function isVideo(item, m){ return (m && m.video) || /video/i.test(item.type||"") || VIDEO_CATS.test(item.category||""); }
-function board(item, i){ return `<div class="board" style="--tint:${22 + (i*9)%30}%;--gx:${[85,20,60,95,40][i%5]}%"><span>${esc(item.format||"4:5")} · ${esc(FORMAT_NAMES[item.format]||"")}</span><strong>${esc(item.title)}</strong><span>${item.link ? "Loading…" : "Add your Drive link"}</span></div>`; }
+function board(item, i){ return `<div class="board" style="--tint:${22 + (i*9)%30}%;--gx:${[85,20,60,95,40][i%5]}%"><span>${esc(item.format||"4:5")} · ${esc(FORMAT_NAMES[item.format]||"")}</span><strong>${esc(item.title)}</strong><span>${!item.link ? "Add your Drive link" : (/behance/i.test(item.link) && !item.cover ? "Add a cover image" : "Loading…")}</span></div>`; }
 const playIcon = `<span class="play" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 1.5v13l11-6.5z" fill="currentColor"/></svg></span>`;
 
 let ITEMS = [], shown = [], active = "All", cur = 0;
@@ -492,7 +497,7 @@ function renderFilters(){
   $("#filters").innerHTML = cats.map(c => {
     const n = c === "All" ? ITEMS.length : ITEMS.filter(i => i.category === c).length;
     const label = c === "Behance" ? `<span class="be">Bē</span>Behance` : esc(c);
-    return `<button class="chip" aria-pressed="${c===active}" data-cat="${esc(c)}">${label}<sup>${n}</sup></button>`; }).join("");
+    return `<button class="chip${c === "Behance" ? " bechip" : ""}" aria-pressed="${c===active}" data-cat="${esc(c)}">${label}<sup>${n}</sup></button>`; }).join("");
 }
 
 function renderWall(){
@@ -500,7 +505,7 @@ function renderWall(){
   $("#wall").innerHTML = shown.map((it, i) => {
     const m = media(it), src = cover(it, m), vid = isVideo(it, m);
     return `<button class="card in" data-i="${i}" style="animation-delay:${Math.min(i,8)*40}ms">
-      <div class="frame" style="aspect-ratio:${ratio(it.format)}">
+      <div class="frame">
         ${board(it, i)}
         ${src ? `<img loading="lazy" alt="${esc(it.title)}" src="${esc(src)}" onerror="this.remove()">` : ""}
         ${vid ? playIcon : ""}
