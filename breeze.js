@@ -1,4 +1,4 @@
-/* Breeze cursor: soft green wind streaks trail the mouse (light strength).
+/* Breeze cursor: tiny green sparkles drift off the mouse as it moves (light strength).
    Desktop only, off for visitors who prefer reduced motion. Remove the <script src="breeze.js"> tag to turn it off. */
 (() => {
   if (!matchMedia("(hover:hover) and (pointer:fine)").matches) return;
@@ -55,8 +55,7 @@
     quiet += speed < .3 ? dt : 0;
 
     if (!document.hidden && quiet < 240){
-      if (speed > 1 && Math.random() < Math.min(.85, speed * .05 * LEVEL)) spawnStreak(speed);
-      if (Math.random() < (.03 + speed * .008) * LEVEL) spawnSpeck();
+      if (Math.random() < (.03 + speed * .016) * LEVEL) spawnSpeck();
     }
 
     ctx.clearRect(0, 0, W, H);
