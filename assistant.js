@@ -149,19 +149,24 @@
 
   /* ---------- UI ---------- */
   const css = `
-  .wa-launch{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:60;display:flex;align-items:center;gap:10px;border:0;background:none;padding:0;cursor:pointer;font:600 14px/1 var(--f,system-ui)}
-  .wa-launch .wa-tip{padding:11px 16px;border-radius:999px;color:var(--ink,#14201A);opacity:0;transform:translateX(8px);transition:opacity .4s,transform .4s;pointer-events:none;white-space:nowrap}
-  .wa-launch.tip .wa-tip,.wa-launch:hover .wa-tip{opacity:1;transform:none}
-  .wa-av{position:relative;width:60px;height:60px;border-radius:50%;overflow:visible;flex:none;box-shadow:0 10px 30px rgba(13,59,36,.35);transition:transform .3s}
-  .wa-launch:hover .wa-av{transform:scale(1.07)}
-  .wa-av img,.wa-av span.i{width:100%;height:100%;border-radius:50%;object-fit:cover;display:grid;place-items:center;background:var(--forest,#0D3B24);color:#fff;font-weight:800;border:2px solid var(--lime,#C9E08F)}
-  .wa-av::after{content:"";position:absolute;right:2px;bottom:2px;width:14px;height:14px;border-radius:50%;background:#2DCB6F;border:2px solid var(--paper,#fff)}
-  .wa-av::before{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--lime,#C9E08F);opacity:.7;animation:waPulse 2.4s ease-out infinite}
-  @keyframes waPulse{from{transform:scale(1);opacity:.7}to{transform:scale(1.35);opacity:0}}
-  .wa-panel{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(92px + env(safe-area-inset-bottom,0px));z-index:61;width:min(390px,calc(100vw - 32px));height:min(600px,calc(100vh - 130px));display:flex;flex-direction:column;padding:0;margin:0;border-radius:28px;overflow:hidden;color:var(--ink,#14201A);transform-origin:bottom right;transform:translateY(16px) scale(.96);opacity:0;pointer-events:none;transition:opacity .3s ease,transform .35s cubic-bezier(.2,.8,.2,1)}
+  .wa-launch{position:fixed;right:max(10px,env(safe-area-inset-right,0px));bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:60;width:124px;height:124px;display:grid;place-items:center;border:0;background:none;padding:0;border-radius:50%;cursor:pointer;-webkit-tap-highlight-color:transparent;color:var(--forest,#0D3B24)}
+  :root[data-theme="dark"] .wa-launch{color:var(--lime,#C9E08F)}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .wa-launch{color:var(--lime,#C9E08F)}}
+  .wa-ring{position:absolute;inset:0;width:100%;height:100%;opacity:0;transform:scale(.7) rotate(-40deg);transition:opacity .35s ease,transform .6s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+  .wa-ring .spin{transform-origin:62px 62px;animation:waSpin 14s linear infinite;animation-play-state:paused}
+  .wa-ring text{font:700 10.5px var(--f,Montserrat,system-ui,sans-serif);letter-spacing:.5px;fill:currentColor;text-transform:uppercase}
+  .wa-ring .halo{fill:color-mix(in oklab,var(--paper,#F5F8F2) 72%,transparent);stroke:currentColor;stroke-opacity:.25;stroke-width:1}
+  .wa-launch:hover .wa-ring,.wa-launch:focus-visible .wa-ring,.wa-launch.tip .wa-ring,.wa-launch.on .wa-ring{opacity:1;transform:none}
+  .wa-launch:hover .wa-ring .spin,.wa-launch:focus-visible .wa-ring .spin,.wa-launch.tip .wa-ring .spin,.wa-launch.on .wa-ring .spin{animation-play-state:running}
+  .wa-launch:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+  @keyframes waSpin{to{transform:rotate(360deg)}}
+  .wa-av{position:relative;width:68px;height:68px;border-radius:50%;flex:none;padding:3px;border:2px solid var(--lime,#C9E08F);background:var(--forest,#0D3B24);box-shadow:0 0 0 6px color-mix(in oklab,var(--lime,#C9E08F) 10%,transparent),0 10px 30px rgba(13,59,36,.35);transition:transform .35s ease}
+  .wa-launch:hover .wa-av,.wa-launch.tip .wa-av{transform:scale(1.04)}
+  .wa-av img,.wa-av span.i{width:100%;height:100%;border-radius:50%;object-fit:cover;display:grid;place-items:center;background:var(--forest,#0D3B24);color:#fff;font-weight:800}
+  .wa-av::after{content:"";position:absolute;right:0;bottom:2px;width:16px;height:16px;border-radius:50%;background:#2DCB6F;border:3px solid var(--forest,#0D3B24)}
+  .wa-panel{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(126px + env(safe-area-inset-bottom,0px));z-index:61;width:min(390px,calc(100vw - 32px));height:min(600px,calc(100vh - 130px));display:flex;flex-direction:column;padding:0;margin:0;border-radius:28px;overflow:hidden;color:var(--ink,#14201A);transform-origin:bottom right;transform:translateY(16px) scale(.96);opacity:0;pointer-events:none;transition:opacity .3s ease,transform .35s cubic-bezier(.2,.8,.2,1)}
   .wa-panel.open{opacity:1;transform:none;pointer-events:auto}
   .wa-panel.glass{position:fixed;background:linear-gradient(135deg,var(--glass-hi,rgba(255,255,255,.9)) -40%,transparent 38%),color-mix(in oklab,var(--paper,#F5F8F2) 95%,transparent)}
-  .wa-launch .wa-tip.glass{position:relative}
   .wa-head{display:flex;align-items:center;gap:12px;padding:14px 14px 14px 16px;border-bottom:1px solid var(--glass-rim,rgba(255,255,255,.5))}
   .wa-head img,.wa-head span.i{width:40px;height:40px;border-radius:50%;object-fit:cover;display:grid;place-items:center;background:var(--forest,#0D3B24);color:#fff;font-weight:800;flex:none}
   .wa-head b{display:block;font:700 15px/1.2 var(--f,system-ui)}
@@ -193,8 +198,8 @@
   :root[data-theme="dark"] .wa-form button,:root[data-theme="dark"] .wa-btn:not(.wa-green):not(.ghost){background:var(--lime,#C9E08F);color:var(--lime-ink,#0D3B24)}
   @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .wa-form button,:root:not([data-theme="light"]) .wa-btn:not(.wa-green):not(.ghost){background:var(--lime,#C9E08F);color:var(--lime-ink,#0D3B24)}}
   .wa-note{font:500 11px/1.3 var(--f,system-ui);color:var(--muted,#5A6B60);text-align:center;padding:0 16px 10px}
-  @media (max-width:520px){.wa-av{width:50px;height:50px}.wa-launch{right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px))}.wa-panel{right:8px;left:8px;width:auto;bottom:calc(84px + env(safe-area-inset-bottom,0px));height:min(72vh,600px)}.wa-launch .wa-tip{display:none}}
-  @media (prefers-reduced-motion:reduce){.wa-av::before{animation:none}.wa-panel,.wa-msg{transition:none;animation:none}}`;
+  @media (max-width:520px){.wa-launch{width:100px;height:100px;right:4px;bottom:calc(4px + env(safe-area-inset-bottom,0px))}.wa-av{width:56px;height:56px}.wa-panel{right:8px;left:8px;width:auto;bottom:calc(104px + env(safe-area-inset-bottom,0px));height:min(70vh,600px)}}
+  @media (prefers-reduced-motion:reduce){.wa-ring,.wa-ring .spin,.wa-av{transition:none!important;animation:none!important}.wa-panel,.wa-msg{transition:none;animation:none}}`;
   const style = document.createElement("style"); style.textContent = css; document.head.appendChild(style);
 
   const initials = (S.name || "W A").split(/\s+/).map(p => p[0]).join("").slice(0,2).toUpperCase();
@@ -202,7 +207,8 @@
 
   const launch = document.createElement("button");
   launch.className = "wa-launch"; launch.type = "button"; launch.setAttribute("aria-label", `Ask ${NAME}'s assistant`);
-  launch.innerHTML = `<span class="wa-tip glass">Ask me anything about ${NAME}</span><span class="wa-av">${avatar}</span>`;
+  const ringTxt = `Ask about ${NAME.split(" ")[0]}`;
+  launch.innerHTML = `<svg class="wa-ring" viewBox="0 0 124 124" aria-hidden="true"><circle class="halo" cx="62" cy="62" r="58"/><defs><path id="waCirc" d="M62,62 m-48,0 a48,48 0 1,1 96,0 a48,48 0 1,1 -96,0"/></defs><g class="spin"><text><textPath href="#waCirc" textLength="298" lengthAdjust="spacing">${ringTxt} • ${ringTxt} • </textPath></text></g></svg><span class="wa-av">${avatar}</span>`;
 
   const panel = document.createElement("section");
   panel.className = "wa-panel glass"; panel.setAttribute("role", "dialog"); panel.setAttribute("aria-label", `${NAME}'s assistant`);
@@ -248,11 +254,11 @@
   function ask(q){ q = q.trim(); if (!q || busy) return; add(esc(q), "me"); chips([]); reply(q); }
 
   function open(){
-    panel.classList.add("open"); launch.classList.remove("tip");
+    panel.classList.add("open"); launch.classList.remove("tip"); launch.classList.add("on");
     if (!started){ started = true; add(`Hi! 👋 I'm ${NAME}'s assistant. Ask me about his experience, skills, work or availability.`, "bot"); chips(SUGGEST); }
     setTimeout(() => input.focus({ preventScroll:true }), 250);
   }
-  function close(){ panel.classList.remove("open"); }
+  function close(){ panel.classList.remove("open"); launch.classList.remove("on"); }
 
   launch.addEventListener("click", () => panel.classList.contains("open") ? close() : open());
   panel.querySelector(".wa-x").addEventListener("click", close);
